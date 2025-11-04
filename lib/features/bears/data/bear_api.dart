@@ -48,11 +48,7 @@ class BearApi {
     return client.postJson(
       '/bear',
       (d) => d as bool,
-      body: {
-        'name': name,
-        'size': size,
-        'colors': colorNames,
-      },
+      body: {'name': name, 'size': size, 'colors': colorNames},
     );
   }
 
@@ -75,10 +71,16 @@ class BearApi {
     }
 
     if (body.isEmpty) {
-      throw Exception('At least one field (name, size, or colors) must be provided for update');
+      throw Exception(
+        'At least one field (name, size, or colors) must be provided for update',
+      );
     }
 
-    return client.putJson('/bear/$id', (d) => d as Map<String, dynamic>, body: body);
+    return client.putJson(
+      '/bear/$id',
+      (d) => d as Map<String, dynamic>,
+      body: body,
+    );
   }
 
   // DELETE /bear/:id
@@ -94,17 +96,14 @@ class BearApi {
     });
   }
 
-  Future<int> addColor(String color, String hex) async {
+  Future<bool> addColor(String color, String hex) async {
     return client.postJson(
       '/color',
-      (d) => d as int,
-      body: {
-        'name': color,
-        'hex': hex,
-      },
+      (d) => d as bool,
+      body: {'name': color, 'hex': hex},
     );
   }
-  
+
   Future<bool> deleteColor(String color) async {
     return client.deleteJson('/color/$color', (d) => d as bool);
   }

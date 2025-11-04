@@ -42,7 +42,7 @@ class BearRepository {
 
   Future<List<ColorModel>> colors() => api.getAllColors();
 
-  Future<int> addColor(String colorName, String hex) => api.addColor(colorName, hex);
+  Future<bool> addColor(String colorName, String hex) => api.addColor(colorName, hex);
 
   Future<bool> deleteColor(String color) => api.deleteColor(color); 
 }
